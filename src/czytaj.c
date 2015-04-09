@@ -1,6 +1,6 @@
 #include "tree.h"
 
-int tree_add( FILE *in )
+int gen_tree( FILE *in )
 {
-
+	
 }

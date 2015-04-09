@@ -28,6 +28,16 @@ struct dyn_tab * dyn_tab_resize( struct dyn_tab *t )
 	return t;
 }
 
+struct str_tab * str_tab_resize( struct str_tab *t )
+{
+	double *np = realloc( t->t, 2*t->size*sizeof *t->t );
+	//if( np == NULL )
+	//	return NULL;
+	t->size *= 2;
+	t->t = np;
+	return t;
+}
+
 void dyn_tab_add( struct dyn_tab * sp, int x )
 {
 	if( sp->size <= sp->n )
@@ -55,7 +65,7 @@ struct str_tab * str_tab_init( int init_size )
 tree_t tree_add( tree_t t, char *pref, char *suf ) {
 	if( t == NULL )
 	{
-		node * n = malloc( sizeof *n );
+		tree_t n = malloc( sizeof *n );
 		n->prefiks = malloc( (strlen(pref) + 1) * sizeof *(n->prefiks) );
 		n->sufiks = str_tab_init( 10 );
 		n->liczba_suf = dyn_tab_init( 10 );
@@ -67,31 +77,31 @@ tree_t tree_add( tree_t t, char *pref, char *suf ) {
 	}
 	else if( strcmp( t->prefiks, pref ) > 0 )
 	{
-		t->left = insert( t->left, pref, suf );
+		t->left = tree_add( t->left, pref, suf );
 		return t;
 	}
 	else if( strcmp( t->prefiks, pref ) < 0 )
 	{
-		t->right = insert( t->right, pref, suf );
+		t->right = tree_add( t->right, pref, suf );
 		return t;
 	} else {
-	    sufiks_add( t, suf );
+		sufiks_add( t, suf );
 		return t;
 	}
 }
 
-void sufiks_add( node *n, char *suf )
+void sufiks_add( tree_t n, char *suf )
 {
 	int i = 0;
-	while( strcmp( n->sufiks[i], suf) != 0 && i < n->wyst )
+	while( strcmp( n->sufiks->t[i], suf) != 0 && i < n->wyst )
 		i++;
 	if( i < n->wyst )
-		n->liczba_suf[i]++;
+		(n->liczba_suf->t[i])++;
 	else
 	{
 		if( n->sufiks->size <= n->sufiks->n )
-			if( dyn_tab_resize( n->sufiks ) == NULL )
-				return NULL;
+			if( str_tab_resize( n->sufiks ) != NULL )
+				return;
 		n->sufiks->t[n->sufiks->n] = malloc( (strlen(suf) + 1) * sizeof *(n->sufiks->t[n->sufiks->n]) );
 		strcpy( n->sufiks->t[n->sufiks->n], suf);
 	n->sufiks->n++;
