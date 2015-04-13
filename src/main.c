@@ -17,7 +17,7 @@ int main( int argc, char **argv )
 		switch( opt )
 		{
 			case 'f':
-				in = optarg;
+				in = fopen( optarg, "r" );
 				break;
 			case 's':
 				slowa = optarg;
@@ -40,7 +40,7 @@ int main( int argc, char **argv )
 	tree_init();
 	//FILE *in = argc > 1 ? fopen( argv[1], "r" ) : stdin;
 	if( in != NULL )
-		gen_tree( in );
+		gen_tree( in, ngram );
 	
 	if( posout != NULL )
 		gen_data( posout );
@@ -54,7 +54,13 @@ int main( int argc, char **argv )
 
 	gen_stat();
 
-	fclose( in );
+	if( in != NULL )
+		fclose( in );
 
-    return 0;
+	if( posin != NULL )
+		fclose( posin );
+
+	if( posout != NULL )
+		fclose( posout );
+	return 0;
 }

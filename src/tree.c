@@ -62,7 +62,8 @@ struct str_tab * str_tab_init( int init_size )
 	return ns;
 }
 
-tree_t tree_add( tree_t t, char *pref, char *suf ) {
+tree_t tree_add( tree_t t, char *pref, char *suf )
+{
 	if( t == NULL )
 	{
 		tree_t n = malloc( sizeof *n );
