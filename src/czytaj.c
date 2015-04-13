@@ -1,5 +1,7 @@
 #include "tree.h"
-#include<stdio.h>
+#include "wejscie.h"
+//#include<stdio.h>
+//#include<stdlib.h>
 #include<string.h>
 
 int gen_tree( FILE *in, int n )
@@ -35,5 +37,5 @@ int gen_tree( FILE *in, int n )
 			*bufor[i] = *bufor[i+1];
 
 	}
-
+	return 0;
 }

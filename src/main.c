@@ -34,25 +34,25 @@ int main( int argc, char **argv )
 			case 'g':
 				posout = optarg;
 			default:
-				fprintf( stderr, uzycie, program );
+				fprintf( stderr, "uzycie", program );
 		}
 
-	tree_init();
+	//tree_init();
 	//FILE *in = argc > 1 ? fopen( argv[1], "r" ) : stdin;
 	if( in != NULL )
 		gen_tree( in, ngram );
 	
 	if( posout != NULL )
-		gen_data( posout );
+		//gen_data( posout );
 	
 	if( posin != NULL )
-		gen_tree_data( posin );
+		//gen_tree_data( posin );
 
 	
 
-	gen_text();
+	//gen_text();
 
-	gen_stat();
+	//gen_stat();
 
 	if( in != NULL )
 		fclose( in );
