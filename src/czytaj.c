@@ -1,14 +1,11 @@
 #include "tree.h"
 #include "wejscie.h"
-//#include<stdio.h>
-//#include<stdlib.h>
 #include<string.h>
 
-int gen_tree( FILE *in, int n )
+tree_t gen_tree( FILE *in, tree_t tree, int n )
 {
 	char prefiks[100];
 	char bufor[n][30];
-	tree_t tree = NULL;
 	
 	int i;
         for( i = 1; i < n-1; i++ )
@@ -26,7 +23,7 @@ int gen_tree( FILE *in, int n )
 	*/
 	while( fscanf( in, "%s", bufor[n-1] ) == 1 )
 	{
-		*prefiks = *bufor[0];
+		strcpy( prefiks, bufor[0] );
 
 		for( i = 0; i < n-1; i++ )
 			strcat( prefiks, bufor[i] );
@@ -34,8 +31,8 @@ int gen_tree( FILE *in, int n )
 		tree_add( tree, prefiks, bufor[n-1] );
 	
 		for( i = 0; i < n-1; i++ )
-			*bufor[i] = *bufor[i+1];
+			strcpy( bufor[i], bufor[i+1] );
 
 	}
-	return 0;
+	return tree;
 }

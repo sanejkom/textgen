@@ -109,3 +109,15 @@ void sufiks_add( tree_t n, char *suf )
 	dyn_tab_add( n->liczba_suf, 1);
     }
 }
+
+tree_t tree_search( tree_t t, char *szuk )
+{
+	if( strcmp( t->prefiks, szuk ) == 0 )
+		return t;
+
+	else if( strcmp( t->prefiks, szuk ) < 0 )
+		tree_search( t->right, szuk );
+
+	else
+		tree_search( t->left, szuk );
+}

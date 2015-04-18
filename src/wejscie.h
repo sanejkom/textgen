@@ -4,6 +4,6 @@
 #include<stdlib.h>
 #include<stdio.h>
 
-int gen_tree( FILE *in, int ngram );
+tree_t gen_tree( FILE *in, tree_t head, int ngram );
 
 #endif

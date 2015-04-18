@@ -39,4 +39,6 @@ tree_t tree_add( tree_t t, char *pref, char *suf );
 
 void sufiks_add( tree_t n, char *suf );
 
+tree_t tree_search( tree_t t, char *szuk );
+
 #endif // _TREE_H_

@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<getopt.h>
 #include"wejscie.h"
+#include"tree.h"
 
 int main( int argc, char **argv )
 {
@@ -12,6 +13,7 @@ int main( int argc, char **argv )
 	char *program = argv[0];
 	FILE *posin = NULL;
 	FILE *posout = NULL;
+	tree_t head = NULL;
 
 	while(( opt = getopt( argc, argv, "f:s:a:n:p:g:" )) != -1 )
 		switch( opt )
@@ -50,7 +52,7 @@ int main( int argc, char **argv )
 
 	
 
-	//gen_text();
+	gen_text( head, slowa, akapity, ngram );
 
 	//gen_stat();
 
