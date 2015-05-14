@@ -1,7 +1,9 @@
 #include<stdio.h>
 #include<getopt.h>
+#include<stdlib.h>
 #include"wejscie.h"
 #include"tree.h"
+#include"gen.h"
 
 int main( int argc, char **argv )
 {
@@ -13,6 +15,7 @@ int main( int argc, char **argv )
 	char *program = argv[0];
 	FILE *posin = NULL;
 	FILE *posout = NULL;
+	//tree_t head = malloc( sizeof( head ) );
 	tree_t head = NULL;
 
 	while(( opt = getopt( argc, argv, "f:s:a:n:p:g:" )) != -1 )
@@ -22,32 +25,32 @@ int main( int argc, char **argv )
 				in = fopen( optarg, "r" );
 				break;
 			case 's':
-				slowa = optarg;
+				slowa = atoi( optarg );
 				break;
 			case 'a':
-				akapity = optarg;
+				akapity = atoi( optarg );
 				break;
 			case 'n':
-				ngram = optarg;
+				ngram = atoi( optarg );
 				break;
-			case 'p':
+			/*case 'p':
 				posin = optarg;
 				break;
 			case 'g':
-				posout = optarg;
+				posout = optarg;*/
 			default:
-				fprintf( stderr, "uzycie", program );
+				fprintf( stderr, "%s:uzycie", program );
 		}
 
 	//tree_init();
 	//FILE *in = argc > 1 ? fopen( argv[1], "r" ) : stdin;
 	if( in != NULL )
-		gen_tree( in, ngram );
+		head = gen_tree( in, head, ngram );
 	
-	if( posout != NULL )
+	//if( posout != NULL )
 		//gen_data( posout );
 	
-	if( posin != NULL )
+	//if( posin != NULL )
 		//gen_tree_data( posin );
 
 	

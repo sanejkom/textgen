@@ -4,8 +4,10 @@
 typedef struct node
 {
 	char *prefiks;
-	struct str_tab *sufiks;
-	struct dyn_tab *liczba_suf;
+	//struct str_tab *sufiks;
+	//struct dyn_tab *liczba_suf;
+	char *sufiks[20];
+	char liczba_suf[20];
 	int wyst;
 	struct node *left;
 	struct node *right;
