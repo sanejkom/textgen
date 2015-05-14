@@ -17,6 +17,12 @@ int main( int argc, char **argv )
 	FILE *posout = NULL;
 	//tree_t head = malloc( sizeof( head ) );
 	tree_t head = NULL;
+	char *uzycie = "Uzycie programu:\n"
+			"./textgen -f [PLIK] [OPCJE]\n\n"
+			"Lista opcji:\n"
+			"-s - dlugosc generowanego tekstu podana w liczbie slow\n"
+			"-a - liczba akapitow, z ilu ma skladac sie wygenerowany tekst\n"
+			"-n - dlugosc n-gramow na podstawie ktorych jest generowany teskt\n\n";
 
 	while(( opt = getopt( argc, argv, "f:s:a:n:p:g:" )) != -1 )
 		switch( opt )
@@ -39,7 +45,7 @@ int main( int argc, char **argv )
 			case 'g':
 				posout = optarg;*/
 			default:
-				fprintf( stderr, "%s:uzycie", program );
+				fprintf( stderr, "%s:\n\n%s", program, uzycie );
 		}
 
 	//tree_init();
