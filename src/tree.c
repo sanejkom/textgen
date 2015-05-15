@@ -66,20 +66,21 @@ tree_t tree_add( tree_t t, char *pref, char *suf )
 {
 	if( t == NULL )
 	{
-		tree_t n = malloc( sizeof *n );
+		node_t *n = malloc( sizeof *n );
 		n->prefiks = malloc( (strlen(pref) + 1) * sizeof( char ) );
 		//n->sufiks = str_tab_init( 10 );
-		//n->sufiks = malloc( 20 * 20 * sizeof( char ) );
+		n->sufiks = malloc( 20 * 20 * sizeof *n->sufiks );
 		//n->liczba_suf = dyn_tab_init( 10 );
 		n->wyst = 0;
 		int i;
 		for( i = 0; i < 20; i++ )
 		{
 			n->liczba_suf[i] = 0;
-			n->sufiks[i] = malloc( 20 * sizeof( char ) );
+			//n->sufiks[i] = malloc( 20 * sizeof( char ) );
+			n->sufiks[i] = NULL;
 		}
 		strcpy( n->prefiks, pref );
-		n->left = n-> right = NULL;
+		n->left = n->right = NULL;
 		sufiks_add( n, suf );
 		return n;
 	}
